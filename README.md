@@ -131,6 +131,6 @@ sudo ufw enable`
    HTTP TCP 80, CUSTOM UDP 123, CUSTOM TCP 2200.
 
 ### Server Info
-Host Name: http://ec2-18-191-13-86.us-east-2.compute.amazonaws.com/
-Public IP: 18.191.13.86
+Host Name: http://ec2-18-191-13-86.us-east-2.compute.amazonaws.com/ \n
+Public IP: 18.191.13.86 \n
 SSH Command: ssh grader@18.191.13.86 -p 2200 -i ~/.ssh/myApp
