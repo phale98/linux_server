@@ -22,3 +22,20 @@
 1. In Authorized Redirects make sure to include the /gconnect or other google connect method.
 
 ### Creating the grader user with sudo rights
+1. Log into your new server.
+2. Run `sudo adduser grader`
+3. Fill out the prompts for creating the user, name grader, password grader.
+4. `sudo touch /etc/sudoers.d/grader`
+5. edit the file with `sudo vim /etc/sudoers.d/grader`
+6. Press escape, then i. Add the line `grader ALL=(ALL:ALL) ALL`
+6. Save and quit with esc and :wq.
+
+### Enable SSH authentication
+#### Local Machine (Not Server)
+1. Open your termnial (Windows will have to use something like git bash or Cygwin).
+2. Navigate to the users home directory `cd ~`
+3. Use `ls -a` to see if you have a .shh directory, you dont use `mkdir .ssh` to create one.
+4. Run  `ssh-keygen`
+5. Type .ssh/[NAME OF KEY HERE] the name is arbitrary.
+6. Accept with enter.
+6. Use `cd .ssh` to enter directory and copy the output of `cat [NAME_OF_KEY].pub`
