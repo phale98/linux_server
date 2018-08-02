@@ -73,4 +73,12 @@ You should be able to connect by using the command `grader@[SERVER_IP] -p 2200 -
 4. Remove files not related to your app, like Vagrant file, or forum.
 
 ### Configure the App
-1. Rename your application file to __init__.py with `sudo mv [APP_NAME] __init__.py
+1. Rename your application file to `__init__.py` with `sudo mv [APP_NAME] __init__.py`
+2. If you used SQLite like me reconfigure your app to use postgreSQL by changing every line that says
+   `sqlite:///[DATABASE_NAME]` to `postgresql://catalog:password@localhost/catalog`
+3. This will most likely need to be changed in `databse_setup.py` as well. 
+4. Get the pip application `sudo apt-get install python-pip`
+5. Get the virtual enviornment `sudo pip install virtualenv`
+6. Create a new virtual enviornment `sudo virtualenv [NAME_OF_VENV]`
+7. Start it `source [NAME_OF_VENV]/bin/activate`
+8. Use pip to install requests, httplib2, oauth2client, and sqlalchemy. Make sure your virtual enviornment is on.
