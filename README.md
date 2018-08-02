@@ -102,6 +102,7 @@ You should be able to connect by using the command `grader@[SERVER_IP] -p 2200 -
   LogLevel warn
   CustomLog ${APACHE_LOG_DIR}/access.log combined
 </VirtualHost>`
+
 11. Use `sudo a2ensite catalog` to start the virtual host.
 12. Make the wsgi file you mentioned in the virtual host iwth `sudo nano /var/www/catalog/catalog.wsgi`
 13. Make it match:
@@ -110,9 +111,9 @@ import sys
 import logging
 logging.basicConfig(stream=sys.stderr)
 sys.path.insert(0,"/var/www/catalog/")
-
 from catalog import app as application
 application.secret_key = 'Add your secret key'`
+
 14. Restart apache with `sudo service apache2 restart`.
 
 ### Setup Firewall
