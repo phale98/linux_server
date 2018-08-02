@@ -39,3 +39,38 @@
 5. Type .ssh/[NAME OF KEY HERE] the name is arbitrary.
 6. Accept with enter.
 6. Use `cd .ssh` to enter directory and copy the output of `cat [NAME_OF_KEY].pub`
+
+#### On Amazon Server
+1. Switch to grader using `sudo su grader`
+2. Repeat steps 2 and 3 from the local machine section.
+3. Set file permissions `chmod 700 .ssh` only the owner should have full permission.
+4. Use `touch .ssh/authorized_keys` to create an authorized_key file.
+5. Use `chmod 600 .ssh/authorized_keys` so onlyt he owner can read or write the file.
+6. Paste the public key for yoru pair into the file using a text editor like nano or vim.
+
+### Local Machine SSH Connection
+You should be able to connect by using the command `grader@[SERVER_IP] -p 2200 -i ~/.ssh/[NAME_OF_KEY_ON_LOCAL_MACHINE]`
+
+### Some Server Configurations For Our App
+1. Install apache with `sudo apt-get install apache2`
+2. Get mod_wsgi `sudo apt-get install python-setuptools libapache2-mod-wsgi`
+3. Restart the apache service with `sudo service apache2 restart`
+
+### Get PostgreSQL
+1. Use `sudo apt-get install postgresql`
+2. Login using `sudo su - postgres`
+3. To use postgresql type `psql`
+4. Create a new database the application with `postgres=# CREATE DATABASE catalog;`
+   and `postgres=# CREATE USER catalog;`
+5. Set the password for the user to password `postgres =# ALTER ROLE catalog WITH PASSWORD 'password';`
+6. Give the catalog user access to catalog db `postgres=# GRANT ALL PRIVILEGES ON DATABASE catalog to catalog;`
+7. Quit and exit with `postgres=# \q` `exit`
+
+### Clone your App.
+1. Check if you have git `git -v` if you don't run `sudo apt-get install git`
+2. Navigate to www directory with `cd /var/www`
+3. Clone your app with `git clone [YOUR_PROJECT_URI]`
+4. Remove files not related to your app, like Vagrant file, or forum.
+
+### Configure the App
+1. Rename your application file to __init__.py with `sudo mv [APP_NAME] __init__.py
