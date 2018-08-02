@@ -15,3 +15,10 @@
 1. Configure the time zone with `sudo dpkg-reconfigure`, UTC is under none of the above.
 
 ### Configuring OAuth
+1. Go to Google Cloud Platform.
+1. Under API & Services click Credentials
+1. Edit the authorized JavaScript origins to inlcude the server's public ip address and the domain name,
+   which can be found using a service like hcidata.info.
+1. In Authorized Redirects make sure to include the /gconnect or other google connect method.
+
+### Creating the grader user with sudo rights
