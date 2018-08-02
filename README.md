@@ -91,8 +91,8 @@ You should be able to connect by using the command `grader@[SERVER_IP] -p 2200 -
   WSGIScriptAlias / /var/www/catalog/catalog.wsgi
   <Directory /var/www/catalog/catalog/>
           Order allow,deny
-          Allow from all`
-  `</Directory>
+          Allow from all
+  </Directory>
   Alias /static /var/www/catalog/catalog/static
   <Directory /var/www/catalog/catalog/static/>
           Order allow,deny
