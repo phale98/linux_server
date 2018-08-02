@@ -1,4 +1,4 @@
 # linux_server
-#FSND Linux Configuration
+# FSND Linux Configuration
 
-#Getting Started
+# Getting Started
