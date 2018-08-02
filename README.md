@@ -82,3 +82,50 @@ You should be able to connect by using the command `grader@[SERVER_IP] -p 2200 -
 6. Create a new virtual enviornment `sudo virtualenv [NAME_OF_VENV]`
 7. Start it `source [NAME_OF_VENV]/bin/activate`
 8. Use pip to install requests, httplib2, oauth2client, and sqlalchemy. Make sure your virtual enviornment is on.
+9. Create and edit the virtual host with `sudo vim /etc/apache2/sites-available/catalog.conf`
+10. Make it look like this:
+   `<VirtualHost *:80>
+  ServerName [PublicIPAddress]
+  ServerAdmin [Email]
+  ServerAlias [Host Name]
+  WSGIScriptAlias / /var/www/catalog/catalog.wsgi
+  <Directory /var/www/catalog/catalog/>
+          Order allow,deny
+          Allow from all
+  </Directory>
+  Alias /static /var/www/catalog/catalog/static
+  <Directory /var/www/catalog/catalog/static/>
+          Order allow,deny
+          Allow from all
+  </Directory>
+  ErrorLog ${APACHE_LOG_DIR}/error.log
+  LogLevel warn
+  CustomLog ${APACHE_LOG_DIR}/access.log combined
+</VirtualHost>`
+11. Use `sudo a2ensite catalog` to start the virtual host.
+12. Make the wsgi file you mentioned in the virtual host iwth `sudo nano /var/www/catalog/catalog.wsgi`
+13. Make it match:
+   `#!/usr/bin/python
+import sys
+import logging
+logging.basicConfig(stream=sys.stderr)
+sys.path.insert(0,"/var/www/catalog/")
+
+from catalog import app as application
+application.secret_key = 'Add your secret key'`
+14. Restart apache with `sudo service apache2 restart`.
+
+### Setup Firewall
+1. Note: Be very carful here as it is possible to lock yourself out of your remote server.
+2. Run `vim /etc/ssh/sshd_config`
+3. Change port number listed from 22 to 2200.
+4. Change the PermiteRootLogin option to no.
+5. Change PasswordAuthentication to no.
+6. Run the following commands to configure the firewall:
+   `sudo ufw allow 2200/tcp
+sudo ufw allow 80/tcp
+sudo ufw allow 123/udp
+sudo ufw enable`
+7. In the Amazon Lightsail Instance, click on the 3 dots to manage your server. Select networking and add these rules:
+   HTTP TCP 80, CUSTOM UDP 123, CUSTOM TCP 2200.
+
